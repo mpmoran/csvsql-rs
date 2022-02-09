@@ -1,7 +1,6 @@
 # csvsql-rs
 
 [![test](https://github.com/mpmoran/csvsql-rs/actions/workflows/rust.yml/badge.svg)](https://github.com/mpmoran/csvsql-rs/actions/workflows/rust.yml)
-[![1-create-aarch64-build](https://github.com/mpmoran/csvsql-rs/actions/workflows/rust.yml/badge.svg?branch=1-create-aarch64-build)](https://github.com/mpmoran/csvsql-rs/actions/workflows/rust.yml)
 
 Query a CSV file using SQL. The table name is the stem of the CSV file path. The application writes results to standard output by default.
 
