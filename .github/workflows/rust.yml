@@ -2,11 +2,9 @@ name: Rust
 
 on:
   push:
-    # branches: [ test ]
-    branches: [ 1-create-aarch64-build ]
+    branches: [ $default-branch, 1-create-aarch64-build ]
   pull_request:
-    # branches: [ test ]
-    branches: [ 1-create-aarch64-build ]
+    branches: [ $default-branch, 1-create-aarch64-build ]
 
 env:
   CARGO_TERM_COLOR: always
