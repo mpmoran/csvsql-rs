@@ -32,6 +32,8 @@ jobs:
           path: "target/criterion"
 
   build-apple-darwin-x86_64:
+    needs:
+      - build-linux-gnu-x86_64
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
