@@ -1,8 +1,10 @@
 # csvsql-rs
 
-[![test](https://github.com/mpmoran/csvsql-rs/actions/workflows/rust.yml/badge.svg)](https://github.com/mpmoran/csvsql-rs/actions/workflows/rust.yml)
+[![test](https://github.com/mpmoran/csvsql-rs/actions/workflows/all.yml/badge.svg)](https://github.com/mpmoran/csvsql-rs/actions/workflows/all.yml)
 
 Query a CSV file using SQL. The table name is the stem of the CSV file path. The application writes results to standard output by default.
+
+Inspired by [csvkit](https://github.com/wireservice/csvkit).
 
 ## Usage
 
