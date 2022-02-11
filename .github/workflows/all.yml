@@ -53,3 +53,27 @@ jobs:
         with:
           name: "csvsql-rs-benchmarks-apple-darwin-x86_64"
           path: "target/criterion"
+
+  build-windows-msvc-x86_64:
+    needs:
+      - build-linux-gnu-x86_64
+      - build-apple-darwin-x86_64
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        run: cargo build --verbose
+      - name: Upload build output
+        uses: actions/upload-artifact@v2
+        with:
+          name: "csvsql-rs-binary-windows-msvc-x86_64"
+          path: "target/debug/csvsql"
+      - name: Run tests
+        run: cargo test --verbose
+      - name: Run benchmarks
+        run: cargo bench --verbose
+      - name: Upload benchmark results
+        uses: actions/upload-artifact@v2
+        with:
+          name: "csvsql-rs-benchmarks-windows-msvc-x86_64"
+          path: "target/criterion"
