@@ -24,7 +24,7 @@ jobs:
       - name: Run tests
         run: cargo test --verbose
       - name: Run benchmarks
-        run: cargo bench
+        run: cargo bench --verbose
       - name: Upload benchmark results
         uses: actions/upload-artifact@v2
         with:
@@ -67,7 +67,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: "csvsql-rs-binary-windows-msvc-x86_64"
-          path: "target/debug/csvsql"
+          path: "target/debug/csvsql.exe"
       - name: Run tests
         run: cargo test --verbose
       - name: Run benchmarks
