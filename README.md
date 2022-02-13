@@ -1,6 +1,6 @@
 # csvsql-rs
 
-[![test](https://github.com/mpmoran/csvsql-rs/actions/workflows/all.yml/badge.svg)](https://github.com/mpmoran/csvsql-rs/actions/workflows/all.yml)
+[![test](https://github.com/mpmoran/csvsql-rs/actions/workflows/test.yml/badge.svg)](https://github.com/mpmoran/csvsql-rs/actions/workflows/test.yml)
 
 Query a CSV file using SQL. The table name is the stem of the CSV file path. The application writes results to standard output by default.
 

@@ -1,4 +1,4 @@
-name: all
+name: test
 
 on:
   push:
@@ -77,3 +77,33 @@ jobs:
         with:
           name: "csvsql-rs-benchmarks-windows-msvc-x86_64"
           path: "target/criterion"
+
+  compute-artifact-checksums:
+    needs:
+      - build-linux-gnu-x86_64
+      - build-apple-darwin-x86_64
+      - build-windows-msvc-x86_64
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: csvsql-rs-binary-linux-gnu-x86_64
+          path: csvsql-rs-binary-linux-gnu-x86_64
+      - name: Compute checksum for Linux binary
+        run: sha256sum csvsql
+        working-directory: csvsql-rs-binary-linux-gnu-x86_64
+      - uses: actions/download-artifact@v2
+        with:
+          name: csvsql-rs-binary-apple-darwin-x86_64
+          path: csvsql-rs-binary-apple-darwin-x86_64
+      - name: Compute checksum for macOS binary
+        run: sha256sum csvsql
+        working-directory: csvsql-rs-binary-apple-darwin-x86_64
+      - uses: actions/download-artifact@v2
+        with:
+          name: csvsql-rs-binary-windows-msvc-x86_64
+          path: csvsql-rs-binary-windows-msvc-x86_64
+      - name: Compute checksum for Windows binary
+        run: sha256sum csvsql.exe
+        working-directory: csvsql-rs-binary-windows-msvc-x86_64
