@@ -1,4 +1,4 @@
-name: all
+name: test
 
 on:
   push:
@@ -21,6 +21,13 @@ jobs:
         with:
           name: "csvsql-rs-binary-linux-gnu-x86_64"
           path: "target/debug/csvsql"
+      - name: Compute checksum
+        run: sha256sum target/debug/csvsql > csvsql-rs-binary-checksum-linux-gnu-x86_64.txt
+      - name: Upload checksum output
+        uses: actions/upload-artifact@v2
+        with:
+          name: "csvsql-rs-binary-checksum-linux-gnu-x86_64"
+          path: "csvsql-rs-binary-checksum-linux-gnu-x86_64.txt"
       - name: Run tests
         run: cargo test --verbose
       - name: Run benchmarks
@@ -44,6 +51,13 @@ jobs:
         with:
           name: "csvsql-rs-binary-apple-darwin-x86_64"
           path: "target/debug/csvsql"
+      - name: Compute checksum
+        run: shasum --algorithm 256 target/debug/csvsql > csvsql-rs-binary-checksum-apple-darwin-x86_64.txt
+      - name: Upload checksum output
+        uses: actions/upload-artifact@v2
+        with:
+          name: "csvsql-rs-binary-checksum-apple-darwin-x86_64"
+          path: "csvsql-rs-binary-checksum-apple-darwin-x86_64.txt"
       - name: Run tests
         run: cargo test --verbose
       - name: Run benchmarks
@@ -68,6 +82,13 @@ jobs:
         with:
           name: "csvsql-rs-binary-windows-msvc-x86_64"
           path: "target/debug/csvsql.exe"
+      - name: Compute checksum
+        run: Get-FileHash target/debug/csvsql.exe -Algorithm SHA256 | Format-List > csvsql-rs-binary-checksum-windows-msvc-x86_64.txt
+      - name: Upload checksum output
+        uses: actions/upload-artifact@v2
+        with:
+          name: "csvsql-rs-binary-checksum-windows-msvc-x86_64"
+          path: "csvsql-rs-binary-checksum-windows-msvc-x86_64.txt"
       - name: Run tests
         run: cargo test --verbose
       - name: Run benchmarks
