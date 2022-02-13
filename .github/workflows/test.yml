@@ -88,12 +88,22 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/download-artifact@v2
         with:
-          path: gh-artifacts
-      - name: Compute checksums
-        run: sha256sum *.zip > csvsql-rs-checksums.txt
-        working-directory: gh-artifacts
-      - name: Upload checksums
-        uses: actions/upload-artifact@v2
+          name: csvsql-rs-binary-linux-gnu-x86_64
+          path: csvsql-rs-binary-linux-gnu-x86_64
+      - name: Compute checksum for Linux binary
+        run: sha256sum csvsql
+        working-directory: csvsql-rs-binary-linux-gnu-x86_64
+      - uses: actions/download-artifact@v2
         with:
-          name: "csvsql-rs-checksums"
-          path: "gh-artifacts/csvsql-rs-checksums.txt"
+          name: csvsql-rs-binary-apple-darwin-x86_64
+          path: csvsql-rs-binary-apple-darwin-x86_64
+      - name: Compute checksum for macOS binary
+        run: sha256sum csvsql
+        working-directory: csvsql-rs-binary-apple-darwin-x86_64
+      - uses: actions/download-artifact@v2
+        with:
+          name: csvsql-rs-binary-windows-msvc-x86_64
+          path: csvsql-rs-binary-windows-msvc-x86_64
+      - name: Compute checksum for Windows binary
+        run: sha256sum csvsql.exe
+        working-directory: csvsql-rs-binary-windows-msvc-x86_64
