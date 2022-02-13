@@ -90,7 +90,7 @@ jobs:
         with:
           path: gh-artifacts
       - name: Compute checksums
-        run: sha256sum * > csvsql-rs-checksums.txt
+        run: sha256sum *.zip > csvsql-rs-checksums.txt
         working-directory: gh-artifacts
       - name: Upload checksums
         uses: actions/upload-artifact@v2
