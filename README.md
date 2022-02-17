@@ -15,7 +15,7 @@ Installation is a manual process.
 
 ### GNU/Linux
 
-```console
+```sh
 curl -o csvsql-rs.zip -L https://github.com/mpmoran/csvsql-rs/releases/download/0.1.0/csvsql-rs-binary-linux-gnu-x86_64.zip
 unzip csvsql-rs.zip
 chmod +x csvsql
@@ -48,7 +48,7 @@ a,b,c
 
 #### Run, saving results to a file
 
-```console
+```sh
 csvsql -f assets/easy.csv -q "select * from easy" > out.csv
 ```
 
@@ -63,6 +63,7 @@ a,b,c
 ### Help
 
 ```console
+$ csvsql --help
 csvsql 0.1.0
 Michael P. Moran
 Query a CSV file using SQL.
@@ -81,6 +82,6 @@ OPTIONS:
 
 #### GNU/Linux and macOS
 
-```console
+```sh
 sudo rm /usr/local/bin/csvsql
 ```
