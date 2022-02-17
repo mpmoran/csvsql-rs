@@ -81,6 +81,6 @@ OPTIONS:
 
 #### GNU/Linux and macOS
 
-```
+```console
 sudo rm /usr/local/bin/csvsql
 ```
