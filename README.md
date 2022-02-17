@@ -39,7 +39,7 @@ a,b,c
 
 #### Run
 
-```sh
+```console
 $ csvsql -f assets/easy.csv -q "select * from easy"
 a,b,c
 1,2,3
@@ -48,7 +48,7 @@ a,b,c
 
 #### Run, saving results to a file
 
-```sh
+```console
 csvsql -f assets/easy.csv -q "select * from easy" > out.csv
 ```
 
