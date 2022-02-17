@@ -11,6 +11,8 @@ Inspired by [csvkit](https://github.com/wireservice/csvkit).
 
 ## Installation
 
+Installation is a manual process.
+
 ### GNU/Linux
 
 ```console
@@ -20,6 +22,16 @@ curl -o csvsql-rs.zip -L https://github.com/mpmoran/csvsql-rs/releases/download/
 unzip csvsql-rs.zip
 chmod +x csvsql
 ./csvsql --help
+```
+
+### macOS
+
+```console
+curl -o csvsql-rs.zip -L https://github.com/mpmoran/csvsql-rs/releases/download/0.1.0/csvsql-rs-binary-apple-darwin-x86_64.zip
+unzip csvsql-rs.zip
+chmod +x csvsql
+sudo cp csvsql /usr/local/bin
+csvsql --help
 ```
 
 ## Usage
@@ -74,4 +86,12 @@ OPTIONS:
     -h, --help        Print help information
     -q <query>        SQL query
     -V, --version     Print version information
+```
+
+### Uninstallation
+
+#### GNU/Linux and macOS
+
+```
+sudo rm /usr/local/bin/csvsql
 ```
