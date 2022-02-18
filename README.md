@@ -20,6 +20,7 @@ curl -o csvsql-rs.zip -L https://github.com/mpmoran/csvsql-rs/releases/download/
 unzip csvsql-rs.zip
 chmod +x csvsql
 sudo cp csvsql /usr/local/bin
+csvsql --help
 ```
 
 ### macOS
@@ -29,6 +30,7 @@ curl -o csvsql-rs.zip -L https://github.com/mpmoran/csvsql-rs/releases/download/
 unzip csvsql-rs.zip
 chmod +x csvsql
 sudo cp csvsql /usr/local/bin
+csvsql --help
 ```
 
 ## Usage
