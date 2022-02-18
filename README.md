@@ -30,6 +30,10 @@ chmod +x csvsql
 curl -o csvsql-rs.zip -L https://github.com/mpmoran/csvsql-rs/releases/download/0.1.0/csvsql-rs-binary-apple-darwin-x86_64.zip
 unzip csvsql-rs.zip
 chmod +x csvsql
+```sh
+curl -o csvsql-rs.zip -L https://github.com/mpmoran/csvsql-rs/releases/download/0.1.0/csvsql-rs-binary-linux-gnu-x86_64.zip
+unzip csvsql-rs.zip
+chmod +x csvsql
 sudo cp csvsql /usr/local/bin
 csvsql --help
 ```
@@ -50,7 +54,7 @@ a,b,c
 
 #### Run
 
-```sh
+```console
 $ csvsql -f assets/easy.csv -q "select * from easy"
 a,b,c
 1,2,3
@@ -74,6 +78,7 @@ a,b,c
 ### Help
 
 ```console
+$ csvsql --help
 csvsql 0.1.0
 Michael P. Moran
 Query a CSV file using SQL.
@@ -92,6 +97,6 @@ OPTIONS:
 
 #### GNU/Linux and macOS
 
-```
+```sh
 sudo rm /usr/local/bin/csvsql
 ```
