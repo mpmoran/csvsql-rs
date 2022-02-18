@@ -15,7 +15,7 @@ Installation is a manual process.
 
 ### GNU/Linux
 
-```console
+```sh
 curl -o csvsql-rs.zip -L https://github.com/mpmoran/csvsql-rs/releases/download/0.1.0/csvsql-rs-binary-linux-gnu-x86_64.zip
 unzip csvsql-rs.zip
 chmod +x csvsql
@@ -24,7 +24,7 @@ csvsql --help
 
 ### macOS
 
-```console
+```sh
 curl -o csvsql-rs.zip -L https://github.com/mpmoran/csvsql-rs/releases/download/0.1.0/csvsql-rs-binary-apple-darwin-x86_64.zip
 unzip csvsql-rs.zip
 chmod +x csvsql
