@@ -9,30 +9,6 @@ Supported platforms are GNU/Linux, macOS, and Windows.
 
 Inspired by [csvkit](https://github.com/wireservice/csvkit).
 
-## Installation
-
-Installation is a manual process.
-
-### GNU/Linux
-
-```sh
-curl -o csvsql-rs.zip -L https://github.com/mpmoran/csvsql-rs/releases/download/0.1.0/csvsql-rs-binary-linux-gnu-x86_64.zip
-unzip csvsql-rs.zip
-chmod +x csvsql
-sudo cp csvsql /usr/local/bin
-csvsql --help
-```
-
-### macOS
-
-```sh
-curl -o csvsql-rs.zip -L https://github.com/mpmoran/csvsql-rs/releases/download/0.1.0/csvsql-rs-binary-apple-darwin-x86_64.zip
-unzip csvsql-rs.zip
-chmod +x csvsql
-sudo cp csvsql /usr/local/bin
-csvsql --help
-```
-
 ## Usage
 
 ### Example
@@ -49,7 +25,7 @@ a,b,c
 
 #### Run
 
-```console
+```sh
 $ csvsql -f assets/easy.csv -q "select * from easy"
 a,b,c
 1,2,3
@@ -73,7 +49,6 @@ a,b,c
 ### Help
 
 ```console
-$ csvsql --help
 csvsql 0.1.0
 Michael P. Moran
 Query a CSV file using SQL.
@@ -86,12 +61,4 @@ OPTIONS:
     -h, --help        Print help information
     -q <query>        SQL query
     -V, --version     Print version information
-```
-
-### Uninstallation
-
-#### GNU/Linux and macOS
-
-```sh
-sudo rm /usr/local/bin/csvsql
 ```
