@@ -16,7 +16,7 @@ Installation is a manual process.
 ### GNU/Linux
 
 ```sh
-curl -o csvsql-rs.zip -L https://github.com/mpmoran/csvsql-rs/releases/download/0.1.0/csvsql-rs-binary-linux-gnu-x86_64.zip
+curl -o csvsql-rs.zip -L https://github.com/mpmoran/csvsql-rs/releases/download/0.1.1/csvsql-rs-binary-linux-gnu-x86_64.zip
 unzip csvsql-rs.zip
 chmod +x csvsql
 sudo cp csvsql /usr/local/bin
@@ -26,7 +26,7 @@ csvsql --help
 ### macOS
 
 ```sh
-curl -o csvsql-rs.zip -L https://github.com/mpmoran/csvsql-rs/releases/download/0.1.0/csvsql-rs-binary-apple-darwin-x86_64.zip
+curl -o csvsql-rs.zip -L https://github.com/mpmoran/csvsql-rs/releases/download/0.1.1/csvsql-rs-binary-apple-darwin-x86_64.zip
 unzip csvsql-rs.zip
 chmod +x csvsql
 sudo cp csvsql /usr/local/bin
@@ -74,7 +74,7 @@ a,b,c
 
 ```console
 $ csvsql --help
-csvsql 0.1.0
+csvsql 0.1.1
 Michael P. Moran
 Query a CSV file using SQL.
 
