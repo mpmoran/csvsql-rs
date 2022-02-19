@@ -1,14 +1,14 @@
 use std::error::Error;
 
-use clap::{App, Arg};
+use clap::{Command, Arg};
 
 use csvsqllib as csvsql;
 
 fn main() -> Result<(), Box<dyn Error>> {
     env_logger::init();
 
-    let app = App::new("csvsql")
-        .version("0.1.0")
+    let app = Command::new("csvsql")
+        .version("0.1.1")
         .author("Michael P. Moran")
         .about("Query a CSV file using SQL.")
         .arg(
@@ -23,13 +23,13 @@ fn main() -> Result<(), Box<dyn Error>> {
                 .takes_value(true)
                 .help("SQL query"),
         );
-    let mut app2 = app.clone();
+    let mut app_clone = app.clone();
     let matches = app.get_matches();
     let file = match matches.value_of("file") {
         Some(file) => file,
         None => {
             log::error!("You didn't provide a CSV path.");
-            app2.print_help()?;
+            app_clone.print_help()?;
             return Ok(());
         }
     };
@@ -37,7 +37,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         Some(query) => query,
         None => {
             log::error!("You didn't provide a SQL query.");
-            app2.print_help()?;
+            app_clone.print_help()?;
             return Ok(());
         }
     };

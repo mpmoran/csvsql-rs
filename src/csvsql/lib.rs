@@ -52,7 +52,7 @@ pub fn query(path: &str, query: &str) -> Result<String, Box<dyn Error>> {
             return Err(Box::new(CsvSqlError::QueryError));
         }
     };
-    let mut results: Vec<Vec<String>> = Vec::new();
+    let mut results_stage_1: Vec<Vec<String>> = Vec::new();
     let rows = stmt.query_map([], |row| {
         let mut vals: Vec<String> = Vec::new();
         for idx in 0.. {
@@ -61,28 +61,28 @@ pub fn query(path: &str, query: &str) -> Result<String, Box<dyn Error>> {
                 Err(_) => break,
             };
         }
-        results.push(vals);
+        results_stage_1.push(vals);
         Ok(())
     })?;
     let count = rows.count(); // exhaust the iterable; which will fill results vector with values from each row
     log::debug!("row count\n{}", count);
     // add column names to results vector
     let column_names = stmt.column_names();
-    results.insert(0, column_names.iter().map(|s| s.to_string()).collect());
+    results_stage_1.insert(0, column_names.iter().map(|s| s.to_string()).collect());
     log::debug!("column names\n{:?}", column_names);
-    log::debug!("raw results\n{:?}", results);
+    log::debug!("raw results\n{:?}", results_stage_1);
 
     log::info!("Converting query results to CSV format.");
-    let mut results2: Vec<String> = Vec::new();
-    for row in results.iter() {
+    let mut results_stage_2: Vec<String> = Vec::new();
+    for row in results_stage_1.iter() {
         let row2 = row.join(",");
-        results2.push(row2);
+        results_stage_2.push(row2);
     }
-    let results3 = results2.join("\n");
+    let results_stage_3 = results_stage_2.join("\n");
 
     // print csv output
     log::info!("Writing CSV results.");
-    let mut rdr = csv::Reader::from_reader(results3.as_bytes());
+    let mut rdr = csv::Reader::from_reader(results_stage_3.as_bytes());
     let mut wtr = csv::Writer::from_writer(vec![]);
     wtr.write_record(&column_names)?;
     for res in rdr.records() {
