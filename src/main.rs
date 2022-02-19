@@ -1,8 +1,21 @@
 use std::error::Error;
 
-use clap::{Command, Arg};
+use clap::Parser;
 
 use csvsqllib as csvsql;
+
+/// Query a CSV file using SQL
+#[derive(Parser, Debug)]
+#[clap(author, version, about, long_about = None)]
+struct Args {
+    /// Path to CSV file
+    #[clap(short, long)]
+    file: String,
+
+    /// SQL query
+    #[clap(short, long)]
+    query: String,
+}
 
 fn main() -> Result<(), Box<dyn Error>> {
     env_logger::init();
