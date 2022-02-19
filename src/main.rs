@@ -8,7 +8,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     env_logger::init();
 
     let app = Command::new("csvsql")
-        .version("0.1.0")
+        .version("0.1.1")
         .author("Michael P. Moran")
         .about("Query a CSV file using SQL.")
         .arg(
