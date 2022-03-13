@@ -22,7 +22,22 @@ fn main() -> Result<(), Box<dyn Error>> {
                 .short('q')
                 .takes_value(true)
                 .help("SQL query"),
+        )
+        .arg(
+            Arg::new("insert")
+                .short('i')
+                .takes_value(false)
+                .help("Create table with insert statements instead of SQLite CSV module")
+                .required(false),
+        )
+        .arg(
+            Arg::new("ddl-file")
+                .short('d')
+                .takes_value(true)
+                .help("Path to file containing DDL for creating table; required only if -i is provided.")
+                .required(false),
         );
+
     let mut app_clone = app.clone();
     let matches = app.get_matches();
     let file = match matches.value_of("file") {
@@ -41,8 +56,22 @@ fn main() -> Result<(), Box<dyn Error>> {
             return Ok(());
         }
     };
+    let use_insert = matches.is_present("insert");
+    let ddl = match matches.value_of("ddl-file") {
+        Some(file) => file,
+        None => {
+            if use_insert == true {
+                log::error!("You specified the -i flag but did not provide a value for --ddl-file.");
+                app_clone.print_help()?;
+                return Ok(());
+            }
+            else {
+                ""
+            }
+        }
+    };
 
-    let results = csvsql::query(file, query)?;
+    let results = csvsql::query(file, query, &use_insert, ddl)?;
     print!("{}", results);
 
     Ok(())

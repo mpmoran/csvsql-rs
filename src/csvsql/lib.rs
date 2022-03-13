@@ -136,6 +136,10 @@ pub fn create_table_with_insert(db: &Connection, path: &str, ddl_path: &str) -> 
         }
     };
     log::debug!("table ddl\n{:?}", ddl);
+    log::info!("Getting table name from DDL.");
+    let toks: Vec<&str> = ddl.split(' ').collect();  // TODO: this needs to intelligently get the table name
+    let table = toks[2];
+    log::debug!("table name\n{}", table);
 
     log::info!("Opening CSV file at {}.", path);
     let csv_file = match OpenOptions::new().read(true).open(path) {
@@ -154,33 +158,19 @@ pub fn create_table_with_insert(db: &Connection, path: &str, ddl_path: &str) -> 
     }
     log::debug!("csv records\n{:?}", records);
 
-    // log::info!("Composing table schema.");
-    // let header = &records[0];
-    // let mut schema = String::new();
-    // for field in header.iter() {
-    //     schema.push_str(format!("{} TEXT,\n", field).as_str());
-    // }
-    // let schema = schema.trim_end_matches(",\n");
-    // log::debug!("schema\n{:?}", schema);
-
-
-    // log::info!("Creating table from CSV file.");
-    // let ct_stmt = format!("CREATE TABLE {} ({})", table, schema
-    // );
-    // match db.execute_batch(&ct_stmt) {
-    //     Ok(()) => Ok(()),
-    //     Err(e) => {
-    //         log::error!("Failed to create table because of this error: {}", e);
-    //         return Err(CsvSqlError::CreateTableError);
-    //     }
-    // }
-
+    log::info!("Creating table from CSV file.");
+    match db.execute_batch(&ddl) {
+        Ok(()) => (),
+        Err(e) => {
+            log::error!("Failed to create table because of this error: {}", e);
+            return Err(CsvSqlError::CreateTableError);
+        }
+    };
+//     insert_stmt = String::from("");
+//     INSERT INTO table (column1,column2 ,..)
+// VALUES( value1,	value2 ,...);
+//     for rec in records.iter() {
+//         insert_stmt.push_str()
+//     }
     Ok(())
-
-    // read csv
-
-        // for field in record.iter() {
-
-        // }
-    // close file
 }
